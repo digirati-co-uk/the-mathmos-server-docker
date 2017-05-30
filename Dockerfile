@@ -37,7 +37,7 @@ RUN cd /tmp && wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/
 RUN tar xzvf /tmp/apache-tomcat-8*.tar.gz -C /usr/local/tomcat --strip-components=1
 
 # Download The Mathmos Server 1.0.4
-RUN wget -O /opt/the-mathmos-server.tar.gz https://github.com/dlcs/the-mathmos-server/archive/1.0.4.tar.gz \
+RUN wget -O /opt/the-mathmos-server.tar.gz https://github.com/dlcs/the-mathmos-server/archive/1.0.6.tar.gz \
 	&& mkdir /opt/the-mathmos-server \
 	&& tar -xzvf /opt/the-mathmos-server.tar.gz --strip-components=1 -C /opt/the-mathmos-server
 
