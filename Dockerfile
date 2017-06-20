@@ -36,8 +36,8 @@ RUN add-apt-repository -y ppa:webupd8team/java \
 RUN cd /tmp && wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz
 RUN tar xzvf /tmp/apache-tomcat-8*.tar.gz -C /usr/local/tomcat --strip-components=1
 
-# Download The Mathmos Server 1.0.9
-RUN wget -O /opt/the-mathmos-server.tar.gz https://github.com/dlcs/the-mathmos-server/archive/1.0.9.tar.gz \
+# Download The Mathmos Server 1.0.10
+RUN wget -O /opt/the-mathmos-server.tar.gz https://github.com/dlcs/the-mathmos-server/archive/1.0.10.tar.gz \
 	&& mkdir /opt/the-mathmos-server \
 	&& tar -xzvf /opt/the-mathmos-server.tar.gz --strip-components=1 -C /opt/the-mathmos-server
 
