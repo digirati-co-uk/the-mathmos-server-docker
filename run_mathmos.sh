@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export JAVA_OPTS="-Dtext.server.coordinate.url=http://starsky.dlcs-ida.org/coords/ -Dcluster.nodes=elasticsearch:9300"
+export JAVA_OPTS="-Dtext.server.coordinate.url=$STARSKY_URL -Xms${MIN_HEAP:-1024}m -Xmx${MAX_HEAP:-2048}m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=512m -Dcluster.nodes=$ELASTICSEARCH_IP:$ELASTICSEARCH_PORT"
 
 cd /usr/local/tomcat/bin
 
