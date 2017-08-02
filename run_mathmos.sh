@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export JAVA_OPTS="-Dtext.server.coordinate.url=$STARSKY_URL -Xms${MIN_HEAP:-1024}m -Xmx${MAX_HEAP:-2048}m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=512m -Dcluster.nodes=$ELASTICSEARCH_HOST:$ELASTICSEARCH_PORT"
+export JAVA_OPTS="-Dtext.server.coordinate.url=$STARSKY_URL -Xms${MIN_HEAP:-1024}m -Xmx${MAX_HEAP:-2048}m -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=512m -Dcluster.nodes=$ELASTICSEARCH_HOST:$ELASTICSEARCH_PORT -Dcluster.name=elasticsearch"
 
 cd /usr/local/tomcat/bin
 
