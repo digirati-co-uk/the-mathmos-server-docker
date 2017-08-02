@@ -41,6 +41,9 @@ RUN wget -O /opt/the-mathmos-server.tar.gz https://github.com/dlcs/the-mathmos-s
 	&& mkdir /opt/the-mathmos-server \
 	&& tar -xzvf /opt/the-mathmos-server.tar.gz --strip-components=1 -C /opt/the-mathmos-server
 
+# Overrides maven settings file with Digirati's artifact 
+COPY etc/settings.xml /root/.m2/settings.xml
+
 # Compile parent
 RUN cd /opt/the-mathmos-server/the-mathmos-parent/ && mvn clean package install -U
 
