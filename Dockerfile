@@ -54,3 +54,5 @@ RUN cd /opt/the-mathmos-server/the-mathmos-server && mvn clean package install -
 COPY run_mathmos.sh /opt/the-mathmos-server
 
 EXPOSE 8080
+ENV ELASTICSEARCH_CLUSTER elasticsearch
+
