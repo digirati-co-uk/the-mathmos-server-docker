@@ -18,12 +18,8 @@ RUN apt-get update && apt-get install -y \
 	tree \
 	zsh \
 	fish \
-	python-pip \
 	groff-base \
 	&& rm -rf /var/lib/apt/lists/*
-
-# Install AWS CLI
-RUN pip install awscli
 
 # Install Java 8
 # Define commonly used JAVA_HOME variable
@@ -48,6 +44,12 @@ RUN wget -O /opt/the-mathmos-server.tar.gz https://github.com/dlcs/the-mathmos-s
 
 # Overrides maven settings file with Digirati's artifact
 COPY settings.xml /root/.m2/settings.xml
+
+ARG TRAVIS_ARTIFACTORY_URL
+ARG TRAVIS_ARTIFACTORY_USERNAME
+ARG TRAVIS_ARTIFACTORY_PASSWORD
+
+ENV TRAVIS_ARTIFACTORY_URL=${TRAVIS_ARTIFACTORY_URL} TRAVIS_ARTIFACTORY_USERNAME=${TRAVIS_ARTIFACTORY_USERNAME} TRAVIS_ARTIFACTORY_PASSWORD=${TRAVIS_ARTIFACTORY_PASSWORD}
 
 # Compile parent
 RUN cd /opt/the-mathmos-server/the-mathmos-parent/ && mvn clean package install -U
