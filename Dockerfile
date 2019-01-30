@@ -14,8 +14,13 @@ RUN apt-get update && apt-get install -y \
 	software-properties-common \
 	vim \
 	wget \
-	htop tree zsh fish \
-	python-pip groff-base
+	htop \
+	tree \
+	zsh \
+	fish \
+	python-pip \
+	groff-base \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Install AWS CLI
 RUN pip install awscli
@@ -36,13 +41,13 @@ RUN add-apt-repository -y ppa:webupd8team/java \
 RUN cd /tmp && wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz
 RUN tar xzvf /tmp/apache-tomcat-8*.tar.gz -C /usr/local/tomcat --strip-components=1
 
-# Download The Mathmos Server 1.0.24
-RUN wget -O /opt/the-mathmos-server.tar.gz https://github.com/dlcs/the-mathmos-server/archive/1.0.24.tar.gz \
+# Download The Mathmos Server 1.1.0
+RUN wget -O /opt/the-mathmos-server.tar.gz https://github.com/dlcs/the-mathmos-server/archive/1.1.0.tar.gz \
 	&& mkdir /opt/the-mathmos-server \
 	&& tar -xzvf /opt/the-mathmos-server.tar.gz --strip-components=1 -C /opt/the-mathmos-server
 
-# Overrides maven settings file with Digirati's artifact 
-COPY etc/settings.xml /root/.m2/settings.xml
+# Overrides maven settings file with Digirati's artifact
+COPY settings.xml /root/.m2/settings.xml
 
 # Compile parent
 RUN cd /opt/the-mathmos-server/the-mathmos-parent/ && mvn clean package install -U
@@ -55,4 +60,3 @@ COPY run_mathmos.sh /opt/the-mathmos-server
 
 EXPOSE 8080
 ENV ELASTICSEARCH_CLUSTER elasticsearch
-
