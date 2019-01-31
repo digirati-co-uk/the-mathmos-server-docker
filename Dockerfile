@@ -52,10 +52,10 @@ ARG TRAVIS_ARTIFACTORY_PASSWORD
 ENV TRAVIS_ARTIFACTORY_URL=${TRAVIS_ARTIFACTORY_URL} TRAVIS_ARTIFACTORY_USERNAME=${TRAVIS_ARTIFACTORY_USERNAME} TRAVIS_ARTIFACTORY_PASSWORD=${TRAVIS_ARTIFACTORY_PASSWORD}
 
 # Compile parent
-RUN cd /opt/the-mathmos-server/the-mathmos-parent/ && mvn clean package install -U
+RUN cd /opt/the-mathmos-server/the-mathmos-parent/ && mvn clean package install -U -Dmaven.test.skip=true
 
 # Compile server
-RUN cd /opt/the-mathmos-server/the-mathmos-server && mvn clean package install -U \
+RUN cd /opt/the-mathmos-server/the-mathmos-server && mvn clean package install -U -Dmaven.test.skip=true \
 	&& cp /opt/the-mathmos-server/the-mathmos-server/target/search.war /usr/local/tomcat/webapps
 
 COPY run_mathmos.sh /opt/the-mathmos-server
